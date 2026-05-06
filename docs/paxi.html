@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>paxi — DOM morphing · The Fixi Project</title>
+<link rel="stylesheet" href="fixi-style.css">
+<style>
+  :root {
+    --teal:      #2fa84a;
+    --teal-deep: #1f7a35;
+    --teal-pale: color-mix(in srgb, var(--teal) 22%, white);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --teal:      #4ec268;
+      --teal-deep: #2fa84a;
+      --teal-pale: color-mix(in srgb, var(--teal) 28%, black);
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <div class="banner-inner">
+    <span class="pill">NEW</span>
+    <span>fixi 1.0 just shipped</span>
+    <a href="fixi.html">read more →</a>
+  </div>
+</div>
+
+<div class="topbar">
+  <a class="brand" href="index.html" style="text-decoration:none;color:inherit;">
+    <span class="logo">🚲</span>
+    <span>The Fixi Project</span>
+  </a>
+  <nav>
+    <a href="index.html">Guide</a>
+    <a href="fixi.html">fixi</a>
+    <a href="moxi.html">moxi</a>
+    <a class="current" href="paxi.html">paxi</a>
+    <a href="ssexi.html">ssexi</a>
+    <a href="rexi.html">rexi</a>
+  </nav>
+  <a class="gh-pill" href="https://github.com/bigskysoftware/paxi">★ on GitHub</a>
+</div>
+
+<section class="hero">
+  <div>
+    <span class="hero-tagline">♻️ DOM Morphing</span>
+    <h1>Patch,<br>don't <span class="accent">replace.</span></h1>
+    <p class="lede">paxi morphs the DOM in place instead of swapping nodes wholesale. Focus stays where it should. Inputs keep their values. CSS transitions actually transition. 0.6KB, idiomorph in spirit.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#anatomy">See the API →</a>
+      <a class="btn btn-ghost" href="https://github.com/bigskysoftware/paxi">View source</a>
+    </div>
+  </div>
+
+  <div class="sticker">
+    <span class="badge">0.6<br>KB</span>
+    <span class="dot d1"></span>
+    <span class="dot d2"></span>
+    <span class="dot d3"></span>
+    <span class="emoji-big" aria-label="recycle">♻️</span>
+  </div>
+</section>
+
+<div class="chips">
+  <div class="chip"><span class="em">⚡</span><strong>0.6KB</strong> brotli</div>
+  <div class="chip"><span class="em">🎯</span><strong>1</strong> swap method</div>
+  <div class="chip"><span class="em">🪞</span><strong>focus-safe</strong></div>
+  <div class="chip"><span class="em">📦</span><strong>0</strong> deps</div>
+  <div class="chip"><span class="em">↔️</span><strong>idiomorph</strong> inspired</div>
+</div>
+
+<section class="section" id="anatomy">
+  <div class="section-head">
+    <span class="kicker">★ Anatomy</span>
+    <h2>Add one swap mode<br>to <em>any fixi request.</em></h2>
+    <p>Drop paxi on the page and tell fixi to use it. Now your swaps preserve focus, selection, and form state instead of nuking them.</p>
+  </div>
+
+  <div class="demo">
+    <div class="panel">
+      <h3>The HTML</h3>
+<pre><span class="com">&lt;!-- swap with morph instead of innerHTML --&gt;</span>
+<span class="tag">&lt;form</span>
+  <span class="attr">fx-action</span>=<span class="val">"/validate"</span>
+  <span class="attr">fx-trigger</span>=<span class="val">"input changed delay:300ms"</span>
+  <span class="attr">fx-target</span>=<span class="val">"this"</span>
+  <span class="attr">fx-swap</span>=<span class="val">"paxi"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">name</span>=<span class="val">"email"</span><span class="tag">/&gt;</span>
+  <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="val">"hint"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/span&gt;</span>
+<span class="tag">&lt;/form&gt;</span></pre>
+    </div>
+    <div class="panel">
+      <h3>The Result</h3>
+      <p style="margin:0;padding:1.2em;background:var(--paper);border-radius:18px;font-weight:600;color:var(--ink);">As you type, the response morphs into place. Cursor stays put. Focus doesn't blink.</p>
+      <button on-click="
+        let states=['no flicker. cursor stays where you left it.','focus is preserved across swap.','only changed nodes touched.'];
+        q('#out-paxi').textContent = states[Math.floor(Math.random()*states.length)];
+      ">♻️ Show me</button>
+      <output id="out-paxi">click to morph this output panel.</output>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="kicker">★ Why morph?</span>
+    <h2>Replace breaks things.<br><em>Morphing</em> doesn't.</h2>
+  </div>
+
+  <div class="api">
+    <div class="row"><code>focus</code><span>Stays on the element you were typing in</span></div>
+    <div class="row"><code>selection</code><span>Highlight ranges survive a swap</span></div>
+    <div class="row"><code>scroll</code><span>Position preserved within scrollable regions</span></div>
+    <div class="row"><code>animations</code><span>CSS transitions run on changed properties</span></div>
+    <div class="row"><code>state</code><span>Form values, &lt;details&gt; open, &lt;video&gt; playback all kept</span></div>
+    <div class="row"><code>cost</code><span>0.6KB brotli. Cheaper than a single web font weight.</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="kicker">★ Side by side</span>
+    <h2>Replace breaks state.<br>Morph <em>keeps it.</em></h2>
+  </div>
+  <div class="swap-compare">
+    <div class="frame bad">
+      <h4>innerHTML swap</h4>
+      <span class="field">cursor lost ❌</span>
+      <span class="field">scroll reset ❌</span>
+      <span class="field">video restarts ❌</span>
+      <p class="note">Whole subtree wiped. Browser starts over.</p>
+    </div>
+    <span class="vs">vs</span>
+    <div class="frame good">
+      <h4>paxi morph</h4>
+      <span class="field">cursor stays ✓</span>
+      <span class="field">scroll preserved ✓</span>
+      <span class="field">video keeps playing ✓</span>
+      <p class="note">Only changed nodes touched. State survives.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="quote">
+    <blockquote>Patch, don't replace. Your DOM has feelings too.</blockquote>
+    <cite>— paxi, in essence</cite>
+  </div>
+
+  <nav class="next-lib">
+    <a class="prev" href="moxi.html">
+      <span class="em">🥊</span>
+      <div><span class="lbl">← Prev</span><span class="nm">moxi</span></div>
+    </a>
+    <span class="sep">/</span>
+    <a class="nxt" href="ssexi.html">
+      <div><span class="lbl">Next →</span><span class="nm">ssexi</span></div>
+      <span class="em">📡</span>
+    </a>
+  </nav>
+</section>
+
+<footer>
+  <div class="foot-card">
+    <div class="blurb">
+      <strong>🚲 The Fixi Project</strong>
+      Five tiny hypermedia libraries that fit in your head and your bundle. Hand-rolled by Big Sky Software.
+    </div>
+    <div>
+      <h4>Libraries</h4>
+      <ul>
+        <li><a href="fixi.html">fixi</a></li>
+        <li><a href="moxi.html">moxi</a></li>
+        <li><a href="paxi.html">paxi</a></li>
+        <li><a href="ssexi.html">ssexi</a></li>
+        <li><a href="rexi.html">rexi</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Reading</h4>
+      <ul>
+        <li><a href="index.html">Guide</a></li>
+        <li><a href="https://htmx.org/essays">Essays</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Elsewhere</h4>
+      <ul>
+        <li><a href="https://github.com/bigskysoftware">GitHub</a></li>
+        <li><a href="https://htmx.org/discord">Discord</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="imprint">© Big Sky Software · BSD-0 · Made with attributes, not abstractions.</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@bigskysoftware/moxi-js@0.1.1/moxi.js"></script>
+</body>
+</html>

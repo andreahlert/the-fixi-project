@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>rexi — ergonomic fetch · The Fixi Project</title>
+<link rel="stylesheet" href="fixi-style.css">
+<style>
+  :root {
+    --teal:      #b8865c;
+    --teal-deep: #8b6240;
+    --teal-pale: color-mix(in srgb, var(--teal) 22%, white);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --teal:      #d09e75;
+      --teal-deep: #b8865c;
+      --teal-pale: color-mix(in srgb, var(--teal) 28%, black);
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <div class="banner-inner">
+    <span class="pill">NEW</span>
+    <span>fixi 1.0 just shipped</span>
+    <a href="fixi.html">read more →</a>
+  </div>
+</div>
+
+<div class="topbar">
+  <a class="brand" href="index.html" style="text-decoration:none;color:inherit;">
+    <span class="logo">🚲</span>
+    <span>The Fixi Project</span>
+  </a>
+  <nav>
+    <a href="index.html">Guide</a>
+    <a href="fixi.html">fixi</a>
+    <a href="moxi.html">moxi</a>
+    <a href="paxi.html">paxi</a>
+    <a href="ssexi.html">ssexi</a>
+    <a class="current" href="rexi.html">rexi</a>
+  </nav>
+  <a class="gh-pill" href="https://github.com/bigskysoftware/rexi">★ on GitHub</a>
+</div>
+
+<section class="hero">
+  <div>
+    <span class="hero-tagline">🐕 Fetch Wrappers</span>
+    <h1>Fetch, boy.<br><span class="accent">Good fetch.</span></h1>
+    <p class="lede">rexi is fetch() with the rough edges sanded off. Sensible defaults, ergonomic body parsing, friendly errors. For when you need to script HTTP requests instead of declaring them in HTML.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#anatomy">See the API →</a>
+      <a class="btn btn-ghost" href="https://github.com/bigskysoftware/rexi">View source</a>
+    </div>
+  </div>
+
+  <div class="sticker">
+    <span class="badge">1.4<br>KB</span>
+    <span class="dot d1"></span>
+    <span class="dot d2"></span>
+    <span class="dot d3"></span>
+    <span class="emoji-big" aria-label="dog">🐕</span>
+  </div>
+</section>
+
+<div class="chips">
+  <div class="chip"><span class="em">⚡</span><strong>1.4KB</strong> brotli</div>
+  <div class="chip"><span class="em">🎯</span><strong>1</strong> function</div>
+  <div class="chip"><span class="em">📜</span><strong>fluent</strong> chains</div>
+  <div class="chip"><span class="em">📦</span><strong>0</strong> deps</div>
+  <div class="chip"><span class="em">↔️</span>hyperscript <strong>fetch</strong></div>
+</div>
+
+<section class="section" id="anatomy">
+  <div class="section-head">
+    <span class="kicker">★ Anatomy</span>
+    <h2>fetch(), but you<br>actually <em>like writing it.</em></h2>
+    <p>One call. Method shortcuts. Auto JSON. Errors that throw. Use it when you've outgrown fixi attributes and need to script the request.</p>
+  </div>
+
+  <div class="demo">
+    <div class="panel">
+      <h3>The JS</h3>
+<pre><span class="com">// GET → JSON</span>
+<span class="attr">const</span> users <span class="tag">=</span> <span class="attr">await</span> <span class="val">rexi</span>(<span class="val">"/api/users"</span>).<span class="val">json</span>()
+
+<span class="com">// POST with body</span>
+<span class="attr">const</span> ok <span class="tag">=</span> <span class="attr">await</span> <span class="val">rexi</span>.<span class="val">post</span>(<span class="val">"/save"</span>, <span class="tag">{</span> name <span class="tag">})</span>.<span class="val">text</span>()
+
+<span class="com">// stream the body</span>
+<span class="attr">for</span> <span class="attr">await</span> (<span class="attr">const</span> chunk <span class="attr">of</span> <span class="val">rexi</span>(<span class="val">"/feed"</span>).<span class="val">stream</span>())
+  console.<span class="val">log</span>(chunk)</pre>
+    </div>
+    <div class="panel">
+      <h3>The Result</h3>
+      <button on-click="
+        let bones=['🦴 fetched a bone.','🦴 fetched another bone.','🦴 good dog. five bones.','🦴 ok rexi, easy.'];
+        q('#out-rexi').textContent = bones[Math.floor(Math.random()*bones.length)];
+      ">🐕 Fetch!</button>
+      <output id="out-rexi">click to fetch a bone.</output>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="kicker">★ API</span>
+    <h2>One function.<br>A few <em>shortcuts.</em></h2>
+  </div>
+
+  <div class="api">
+    <div class="row"><code>rexi(url)</code><span>Default GET request, returns a chainable response</span></div>
+    <div class="row"><code>rexi.post(url, body)</code><span>POST with auto-serialized body (JSON / FormData)</span></div>
+    <div class="row"><code>rexi.put / .delete / .patch</code><span>The other usual methods</span></div>
+    <div class="row"><code>.json()</code><span>Parse response as JSON, throws on non-2xx</span></div>
+    <div class="row"><code>.text()</code><span>Read response as text</span></div>
+    <div class="row"><code>.html()</code><span>Parse response into a DocumentFragment</span></div>
+    <div class="row"><code>.stream()</code><span>Async-iterable chunks for streaming responses</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="kicker">★ Round trip</span>
+    <h2>One request,<br>one <em>parsed</em> response.</h2>
+  </div>
+  <div class="req-res">
+    <div class="card req">
+      <div class="lab">→ Request</div>
+      <div class="line"><span class="k">method</span> <span class="v">POST</span></div>
+      <div class="line"><span class="k">url</span>    <span class="v">/save</span></div>
+      <div class="line"><span class="k">body</span>   <span class="v">{ name: "rexi" }</span></div>
+      <div class="line"><span class="k">type</span>   <span class="v">application/json</span></div>
+    </div>
+    <div class="card res">
+      <div class="lab">← Response</div>
+      <div class="line"><span class="k">status</span> <span class="v">200 OK</span></div>
+      <div class="line"><span class="k">parsed</span> <span class="v">.json()</span></div>
+      <div class="line"><span class="k">body</span>   <span class="v">{ ok: true }</span></div>
+      <div class="line"><span class="k">throws</span> <span class="v">on non-2xx</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="quote">
+    <blockquote>The good boy of HTTP libraries. Sits, stays, fetches.</blockquote>
+    <cite>— rexi, 5 stars on the leash app</cite>
+  </div>
+
+  <nav class="next-lib">
+    <a class="prev" href="ssexi.html">
+      <span class="em">📡</span>
+      <div><span class="lbl">← Prev</span><span class="nm">ssexi</span></div>
+    </a>
+    <span class="sep">/</span>
+    <a class="nxt" href="fixi.html">
+      <div><span class="lbl">Back to →</span><span class="nm">fixi</span></div>
+      <span class="em">🚲</span>
+    </a>
+  </nav>
+</section>
+
+<footer>
+  <div class="foot-card">
+    <div class="blurb">
+      <strong>🚲 The Fixi Project</strong>
+      Five tiny hypermedia libraries that fit in your head and your bundle. Hand-rolled by Big Sky Software.
+    </div>
+    <div>
+      <h4>Libraries</h4>
+      <ul>
+        <li><a href="fixi.html">fixi</a></li>
+        <li><a href="moxi.html">moxi</a></li>
+        <li><a href="paxi.html">paxi</a></li>
+        <li><a href="ssexi.html">ssexi</a></li>
+        <li><a href="rexi.html">rexi</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Reading</h4>
+      <ul>
+        <li><a href="index.html">Guide</a></li>
+        <li><a href="https://htmx.org/essays">Essays</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Elsewhere</h4>
+      <ul>
+        <li><a href="https://github.com/bigskysoftware">GitHub</a></li>
+        <li><a href="https://htmx.org/discord">Discord</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="imprint">© Big Sky Software · BSD-0 · Made with attributes, not abstractions.</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@bigskysoftware/moxi-js@0.1.1/moxi.js"></script>
+</body>
+</html>

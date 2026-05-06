@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ssexi — streaming HTML & events · The Fixi Project</title>
+<link rel="stylesheet" href="fixi-style.css">
+<style>
+  :root {
+    --teal:      #4a90b8;
+    --teal-deep: #2f6c91;
+    --teal-pale: color-mix(in srgb, var(--teal) 22%, white);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --teal:      #6aa8cd;
+      --teal-deep: #4a90b8;
+      --teal-pale: color-mix(in srgb, var(--teal) 28%, black);
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <div class="banner-inner">
+    <span class="pill">NEW</span>
+    <span>fixi 1.0 just shipped</span>
+    <a href="fixi.html">read more →</a>
+  </div>
+</div>
+
+<div class="topbar">
+  <a class="brand" href="index.html" style="text-decoration:none;color:inherit;">
+    <span class="logo">🚲</span>
+    <span>The Fixi Project</span>
+  </a>
+  <nav>
+    <a href="index.html">Guide</a>
+    <a href="fixi.html">fixi</a>
+    <a href="moxi.html">moxi</a>
+    <a href="paxi.html">paxi</a>
+    <a class="current" href="ssexi.html">ssexi</a>
+    <a href="rexi.html">rexi</a>
+  </nav>
+  <a class="gh-pill" href="https://github.com/bigskysoftware/ssexi">★ on GitHub</a>
+</div>
+
+<section class="hero">
+  <div>
+    <span class="hero-tagline">📡 Streaming</span>
+    <h1>Tune in to<br>the <span class="accent">server.</span></h1>
+    <p class="lede">ssexi connects fixi to Server-Sent Events. The server pushes named events, your HTML listens, fixi swaps. Live notifications, progress, chat, dashboards in 1.4KB.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#anatomy">See the API →</a>
+      <a class="btn btn-ghost" href="https://github.com/bigskysoftware/ssexi">View source</a>
+    </div>
+  </div>
+
+  <div class="sticker">
+    <span class="badge">1.4<br>KB</span>
+    <span class="dot d1"></span>
+    <span class="dot d2"></span>
+    <span class="dot d3"></span>
+    <span class="emoji-big" aria-label="satellite antenna">📡</span>
+  </div>
+</section>
+
+<div class="chips">
+  <div class="chip"><span class="em">⚡</span><strong>1.4KB</strong> brotli</div>
+  <div class="chip"><span class="em">📡</span><strong>SSE</strong> native</div>
+  <div class="chip"><span class="em">🔄</span><strong>auto</strong> reconnect</div>
+  <div class="chip"><span class="em">🎯</span>extends <strong>fixi</strong></div>
+  <div class="chip"><span class="em">📦</span><strong>0</strong> deps</div>
+</div>
+
+<section class="section" id="anatomy">
+  <div class="section-head">
+    <span class="kicker">★ Anatomy</span>
+    <h2>Plain HTML,<br>real-time <em>everything.</em></h2>
+    <p>Open an SSE connection by URL, then trigger fixi swaps on each named event. Live UIs without a websocket framework.</p>
+  </div>
+
+  <div class="demo">
+    <div class="panel">
+      <h3>The HTML</h3>
+<pre><span class="com">&lt;!-- subscribe to /stream, swap on each "msg" event --&gt;</span>
+<span class="tag">&lt;div</span>
+  <span class="attr">sse-connect</span>=<span class="val">"/stream"</span>
+  <span class="attr">fx-trigger</span>=<span class="val">"sse:msg"</span>
+  <span class="attr">fx-swap</span>=<span class="val">"beforeend"</span>
+  <span class="attr">fx-target</span>=<span class="val">"#feed"</span><span class="tag">&gt;&lt;/div&gt;</span>
+
+<span class="tag">&lt;ul</span> <span class="attr">id</span>=<span class="val">"feed"</span><span class="tag">&gt;&lt;/ul&gt;</span></pre>
+    </div>
+    <div class="panel">
+      <h3>The Result</h3>
+      <p style="margin:0;padding:1.2em;background:var(--paper);border-radius:18px;font-weight:600;color:var(--ink);">Each <code style="background:var(--teal-pale);color:var(--teal-deep);padding:0.1em 0.4em;border-radius:6px;font-family:ui-monospace,monospace;">event: msg</code> from the server gets appended to the feed. No polling. No websocket framework.</p>
+      <button on-click="
+        let feed=q('#feed-out');
+        let li=document.createElement('li');
+        li.textContent='📡 server pushed at '+new Date().toLocaleTimeString();
+        li.style.cssText='padding:0.5em 0.8em;margin:0.3em 0;background:var(--teal-pale);color:var(--teal-deep);border-radius:10px;font-weight:600;list-style:none;';
+        feed.appendChild(li);
+      ">📡 Simulate event</button>
+      <ul id="feed-out" style="margin:0;padding:1em;background:var(--paper);border-radius:18px;min-height:5em;list-style:none;"></ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="kicker">★ Attributes</span>
+    <h2>Subscribe with one<br><em>attribute.</em></h2>
+  </div>
+
+  <div class="api">
+    <div class="row"><code>sse-connect</code><span>URL of the SSE endpoint to subscribe to</span></div>
+    <div class="row"><code>sse-close</code><span>Event name that closes the connection</span></div>
+    <div class="row"><code>fx-trigger="sse:&lt;evt&gt;"</code><span>Trigger fixi swap when named event arrives</span></div>
+    <div class="row"><code>fx-swap</code><span>Standard fixi swap modes work (beforeend, paxi, ...)</span></div>
+    <div class="row"><code>reconnect</code><span>Automatic with backoff if connection drops</span></div>
+    <div class="row"><code>cost</code><span>1.4KB brotli, only loads if you use it</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="kicker">★ Live wire</span>
+    <h2>Each event,<br>a <em>swap</em> in your DOM.</h2>
+    <p>Server names the event, your HTML decides what to do with it. Here's a typical chat connection.</p>
+  </div>
+  <div class="timeline">
+    <div class="ev">
+      <span class="when">12:04:01</span>
+      <span class="what">connection opened — <code>sse-connect="/chat"</code></span>
+    </div>
+    <div class="ev">
+      <span class="when">12:04:03</span>
+      <span class="what">event <code>msg</code> → swapped into <code>#feed</code></span>
+    </div>
+    <div class="ev">
+      <span class="when">12:04:08</span>
+      <span class="what">event <code>typing</code> → toggled <code>.is-typing</code></span>
+    </div>
+    <div class="ev">
+      <span class="when">12:04:12</span>
+      <span class="what">event <code>msg</code> → swapped into <code>#feed</code></span>
+    </div>
+    <div class="ev">
+      <span class="when">12:04:30</span>
+      <span class="what">connection dropped → auto-reconnecting…</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="quote">
+    <blockquote>The server has something to say. Your HTML is listening.</blockquote>
+    <cite>— ssexi, basically</cite>
+  </div>
+
+  <nav class="next-lib">
+    <a class="prev" href="paxi.html">
+      <span class="em">♻️</span>
+      <div><span class="lbl">← Prev</span><span class="nm">paxi</span></div>
+    </a>
+    <span class="sep">/</span>
+    <a class="nxt" href="rexi.html">
+      <div><span class="lbl">Next →</span><span class="nm">rexi</span></div>
+      <span class="em">🐕</span>
+    </a>
+  </nav>
+</section>
+
+<footer>
+  <div class="foot-card">
+    <div class="blurb">
+      <strong>🚲 The Fixi Project</strong>
+      Five tiny hypermedia libraries that fit in your head and your bundle. Hand-rolled by Big Sky Software.
+    </div>
+    <div>
+      <h4>Libraries</h4>
+      <ul>
+        <li><a href="fixi.html">fixi</a></li>
+        <li><a href="moxi.html">moxi</a></li>
+        <li><a href="paxi.html">paxi</a></li>
+        <li><a href="ssexi.html">ssexi</a></li>
+        <li><a href="rexi.html">rexi</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Reading</h4>
+      <ul>
+        <li><a href="index.html">Guide</a></li>
+        <li><a href="https://htmx.org/essays">Essays</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Elsewhere</h4>
+      <ul>
+        <li><a href="https://github.com/bigskysoftware">GitHub</a></li>
+        <li><a href="https://htmx.org/discord">Discord</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="imprint">© Big Sky Software · BSD-0 · Made with attributes, not abstractions.</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@bigskysoftware/moxi-js@0.1.1/moxi.js"></script>
+</body>
+</html>

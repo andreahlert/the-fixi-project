@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>moxi — inline scripting · The Fixi Project</title>
+<link rel="stylesheet" href="fixi-style.css">
+<style>
+  :root {
+    --teal:      #c8313e;
+    --teal-deep: #9b1f29;
+    --teal-pale: color-mix(in srgb, var(--teal) 22%, white);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --teal:      #e15662;
+      --teal-deep: #c8313e;
+      --teal-pale: color-mix(in srgb, var(--teal) 28%, black);
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <div class="banner-inner">
+    <span class="pill">NEW</span>
+    <span>fixi 1.0 just shipped</span>
+    <a href="fixi.html">read more →</a>
+  </div>
+</div>
+
+<div class="topbar">
+  <a class="brand" href="index.html" style="text-decoration:none;color:inherit;">
+    <span class="logo">🚲</span>
+    <span>The Fixi Project</span>
+  </a>
+  <nav>
+    <a href="index.html">Guide</a>
+    <a href="fixi.html">fixi</a>
+    <a class="current" href="moxi.html">moxi</a>
+    <a href="paxi.html">paxi</a>
+    <a href="ssexi.html">ssexi</a>
+    <a href="rexi.html">rexi</a>
+  </nav>
+  <a class="gh-pill" href="https://github.com/bigskysoftware/moxi">★ on GitHub</a>
+</div>
+
+<section class="hero">
+  <div>
+    <span class="hero-tagline">🥊 Inline Scripting</span>
+    <h1>Punch above<br>your <span class="accent">weight class.</span></h1>
+    <p class="lede">moxi adds inline event handlers and reactive expressions right on your HTML elements. Two attributes. Modifier chains. No virtual DOM. Pairs perfectly with fixi, but stands on its own.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#anatomy">See the API →</a>
+      <a class="btn btn-ghost" href="https://github.com/bigskysoftware/moxi">View source</a>
+    </div>
+  </div>
+
+  <div class="sticker">
+    <span class="badge">1.8<br>KB</span>
+    <span class="dot d1"></span>
+    <span class="dot d2"></span>
+    <span class="dot d3"></span>
+    <span class="emoji-big" aria-label="boxing glove">🥊</span>
+  </div>
+</section>
+
+<div class="chips">
+  <div class="chip"><span class="em">⚡</span><strong>1.8KB</strong> brotli</div>
+  <div class="chip"><span class="em">🎯</span><strong>2</strong> attributes</div>
+  <div class="chip"><span class="em">🔗</span><strong>chainable</strong> modifiers</div>
+  <div class="chip"><span class="em">📦</span><strong>0</strong> deps</div>
+  <div class="chip"><span class="em">↔️</span><strong>hyperscript</strong> inspired</div>
+</div>
+
+<section class="section" id="anatomy">
+  <div class="section-head">
+    <span class="kicker">★ Anatomy</span>
+    <h2>Behavior, right next<br>to <em>the markup.</em></h2>
+    <p>Stop hunting through five files for what makes one button work. moxi keeps the script attached to the element it controls.</p>
+  </div>
+
+  <div class="demo">
+    <div class="panel">
+      <h3>The HTML</h3>
+<pre><span class="com">&lt;!-- inline event handler with modifiers --&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">id</span>=<span class="val">"name"</span> <span class="attr">placeholder</span>=<span class="val">"your name"</span><span class="tag">/&gt;</span>
+
+<span class="tag">&lt;p</span> <span class="attr">live</span>=<span class="val">"`Hello, ${q('#name').value || 'stranger'}!`"</span><span class="tag">&gt;&lt;/p&gt;</span>
+
+<span class="tag">&lt;button</span>
+  <span class="attr">on-click.prevent.debounce-200</span>=<span class="val">"alert('punched!')"</span><span class="tag">&gt;</span>
+  Punch
+<span class="tag">&lt;/button&gt;</span></pre>
+    </div>
+    <div class="panel">
+      <h3>The Result</h3>
+      <input id="moxi-name" placeholder="your name" style="padding:0.7em 1em;border-radius:14px;border:none;background:var(--paper);font:inherit;font-size:1em;font-weight:600;color:var(--ink-deep);"/>
+      <p live="`Hello, ${q('#moxi-name').value || 'stranger'}!`" style="margin:0;padding:0.8em 1em;background:var(--teal-pale);color:var(--teal-deep);border-radius:14px;font-weight:700;"></p>
+      <button on-click.prevent="alert('🥊 punched!')">🥊 Punch</button>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="kicker">★ Attributes & Modifiers</span>
+    <h2>Two attributes,<br><em>infinite</em> behaviors.</h2>
+  </div>
+
+  <div class="api">
+    <div class="row"><code>on-&lt;event&gt;</code><span>Run JS when an event fires (click, input, submit, ...)</span></div>
+    <div class="row"><code>live</code><span>JS expression re-evaluated on DOM/form changes</span></div>
+    <div class="row"><code>.prevent</code><span>Calls preventDefault() before handler</span></div>
+    <div class="row"><code>.stop</code><span>Calls stopPropagation() before handler</span></div>
+    <div class="row"><code>.once</code><span>Run handler only once</span></div>
+    <div class="row"><code>.debounce-N</code><span>Debounce handler by N ms</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="kicker">★ Modifier Chain</span>
+    <h2>Read it left to right.<br>It does <em>exactly that.</em></h2>
+    <p>Modifiers compose like Unix pipes. Each one is one job, applied in order.</p>
+  </div>
+  <div class="flow">
+    <span class="node start">on-click</span>
+    <span class="arr">→</span>
+    <span class="node">.prevent</span>
+    <span class="arr">→</span>
+    <span class="node">.stop</span>
+    <span class="arr">→</span>
+    <span class="node">.debounce-200</span>
+    <span class="arr">→</span>
+    <span class="node">.once</span>
+    <span class="arr">→</span>
+    <span class="node end">handler()</span>
+  </div>
+</section>
+
+<section class="section">
+  <div class="quote">
+    <blockquote>Locality of behavior. The script is right there, on the element it controls.</blockquote>
+    <cite>— a hyperscript principle, kept</cite>
+  </div>
+
+  <nav class="next-lib">
+    <a class="prev" href="fixi.html">
+      <span class="em">🚲</span>
+      <div><span class="lbl">← Prev</span><span class="nm">fixi</span></div>
+    </a>
+    <span class="sep">/</span>
+    <a class="nxt" href="paxi.html">
+      <div><span class="lbl">Next →</span><span class="nm">paxi</span></div>
+      <span class="em">♻️</span>
+    </a>
+  </nav>
+</section>
+
+<footer>
+  <div class="foot-card">
+    <div class="blurb">
+      <strong>🚲 The Fixi Project</strong>
+      Five tiny hypermedia libraries that fit in your head and your bundle. Hand-rolled by Big Sky Software.
+    </div>
+    <div>
+      <h4>Libraries</h4>
+      <ul>
+        <li><a href="fixi.html">fixi</a></li>
+        <li><a href="moxi.html">moxi</a></li>
+        <li><a href="paxi.html">paxi</a></li>
+        <li><a href="ssexi.html">ssexi</a></li>
+        <li><a href="rexi.html">rexi</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Reading</h4>
+      <ul>
+        <li><a href="index.html">Guide</a></li>
+        <li><a href="https://htmx.org/essays">Essays</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Elsewhere</h4>
+      <ul>
+        <li><a href="https://github.com/bigskysoftware">GitHub</a></li>
+        <li><a href="https://htmx.org/discord">Discord</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="imprint">© Big Sky Software · BSD-0 · Made with attributes, not abstractions.</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@bigskysoftware/moxi-js@0.1.1/moxi.js"></script>
+</body>
+</html>

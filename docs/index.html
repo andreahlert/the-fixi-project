@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fixi Project — All-in-One hypermedia toolbox</title>
+<link rel="stylesheet" href="fixi-style.css">
+<style>
+  :root {
+    --teal:      #b34a3a;
+    --teal-deep: #7a2e22;
+    --teal-pale: color-mix(in srgb, var(--teal) 22%, white);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --teal:      #d06352;
+      --teal-deep: #f0a092;
+      --teal-pale: color-mix(in srgb, var(--teal) 28%, black);
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <div class="banner-inner">
+    <span class="pill">NEW</span>
+    <span>fixi 1.0 just shipped</span>
+    <a href="fixi.html">read more →</a>
+  </div>
+</div>
+
+<div class="topbar">
+  <a class="brand" href="index.html" style="text-decoration:none;color:inherit;">
+    <span class="logo">🧰</span>
+    <span>The Fixi Project</span>
+  </a>
+  <nav>
+    <a class="current" href="index.html">Guide</a>
+    <a href="fixi.html">fixi</a>
+    <a href="moxi.html">moxi</a>
+    <a href="paxi.html">paxi</a>
+    <a href="ssexi.html">ssexi</a>
+    <a href="rexi.html">rexi</a>
+  </nav>
+  <a class="gh-pill" href="https://github.com/bigskysoftware/the-fixi-project">★ on GitHub</a>
+</div>
+
+<section class="hero">
+  <div>
+    <span class="hero-tagline">🧰 All-in-One</span>
+    <h1>The Fixi Project,<br><span class="accent">all in one box.</span></h1>
+    <p class="lede">Five tiny hypermedia libraries. One toolbox. fixi for swaps, moxi for scripting, paxi for morphing, ssexi for streaming, rexi for fetch. Use them together, or pick the one tool you need today.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#family">Open the toolbox →</a>
+      <a class="btn btn-ghost" href="https://github.com/bigskysoftware">View on GitHub</a>
+    </div>
+  </div>
+
+  <div class="sticker">
+    <span class="badge">ALL<br>IN ONE</span>
+    <span class="dot d1"></span>
+    <span class="dot d2"></span>
+    <span class="dot d3"></span>
+    <span class="emoji-big" aria-label="toolbox">🧰</span>
+  </div>
+</section>
+
+<div class="chips">
+  <div class="chip"><span class="em">⚡</span><strong>~6KB</strong> all five</div>
+  <div class="chip"><span class="em">📦</span><strong>0</strong> dependencies</div>
+  <div class="chip"><span class="em">🛠️</span><strong>no</strong> build step</div>
+  <div class="chip"><span class="em">🎯</span><strong>5</strong> libraries</div>
+  <div class="chip"><span class="em">🧩</span><strong>mix &amp;</strong> match</div>
+  <div class="chip"><span class="em">📜</span><strong>1</strong> script tag each</div>
+</div>
+
+<section class="section" id="family">
+  <div class="section-head">
+    <span class="kicker">★ The Toolbox</span>
+    <h2>Five tools.<br>One <em>coherent</em> kit.</h2>
+    <p>Each library is a single standalone script. Each one a scheme to its bigger inspiration. Pop the lid, take what you need.</p>
+  </div>
+
+  <div class="libs">
+    <a class="lib" href="fixi.html">
+      <span class="ico-wrap">🚲</span>
+      <span class="name">fixi</span>
+      <span class="desc">Supercharged HTML.</span>
+      <span class="meta">1.2 KB</span>
+    </a>
+    <a class="lib" href="moxi.html">
+      <span class="ico-wrap">🥊</span>
+      <span class="name">moxi</span>
+      <span class="desc">Inline scripting &amp; reactivity.</span>
+      <span class="meta">1.8 KB</span>
+    </a>
+    <a class="lib" href="paxi.html">
+      <span class="ico-wrap">♻️</span>
+      <span class="name">paxi</span>
+      <span class="desc">DOM morphing &amp; patching.</span>
+      <span class="meta">0.6 KB</span>
+    </a>
+    <a class="lib" href="ssexi.html">
+      <span class="ico-wrap">📡</span>
+      <span class="name">ssexi</span>
+      <span class="desc">Streaming HTML &amp; events.</span>
+      <span class="meta">1.4 KB</span>
+    </a>
+    <a class="lib" href="rexi.html">
+      <span class="ico-wrap">🐕</span>
+      <span class="name">rexi</span>
+      <span class="desc">Ergonomic fetch wrappers.</span>
+      <span class="meta">1.4 KB</span>
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <span class="kicker">⚡ Live Demo</span>
+    <h2>This page is using <em>fixi + moxi</em> right now.</h2>
+    <p>Click the button. The HTML on the left is what makes it work. That's the whole API.</p>
+  </div>
+
+  <div class="demo">
+    <div class="panel">
+      <h3>The HTML</h3>
+<pre><span class="com">&lt;!-- six attributes. that's the whole API. --&gt;</span>
+<span class="tag">&lt;button</span>
+  <span class="attr">fx-action</span>=<span class="val">"/api/wisdom"</span>
+  <span class="attr">fx-method</span>=<span class="val">"get"</span>
+  <span class="attr">fx-target</span>=<span class="val">"#out"</span>
+  <span class="attr">fx-swap</span>=<span class="val">"innerHTML"</span><span class="tag">&gt;</span>
+  Bestow wisdom
+<span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;output</span> <span class="attr">id</span>=<span class="val">"out"</span><span class="tag">&gt;&lt;/output&gt;</span></pre>
+    </div>
+    <div class="panel">
+      <h3>The Result</h3>
+      <button on-click="
+        let lines=[
+          'a framework so light, it floats.',
+          'POST malone is my favorite hypermedia artist.',
+          'less code, fewer bugs. math.',
+          'why did HTML cross the road? to GET to the other side.',
+          'the best framework is the one you barely notice.'
+        ];
+        q('#out').textContent = lines[Math.floor(Math.random()*lines.length)];
+      ">🃏 Bestow wisdom</button>
+      <output id="out">click the button to receive ancient hypermedia wisdom.</output>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="quote">
+    <blockquote>One toolbox. Five tools. No screws, no Allen keys, no torx bits you'll never use.</blockquote>
+    <cite>— the all-in-one promise</cite>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-card">
+    <div class="blurb">
+      <strong>🧰 The Fixi Project</strong>
+      Five tiny hypermedia libraries that fit in your head and your bundle. Hand-rolled by Big Sky Software.
+    </div>
+    <div>
+      <h4>Libraries</h4>
+      <ul>
+        <li><a href="fixi.html">fixi</a></li>
+        <li><a href="moxi.html">moxi</a></li>
+        <li><a href="paxi.html">paxi</a></li>
+        <li><a href="ssexi.html">ssexi</a></li>
+        <li><a href="rexi.html">rexi</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Reading</h4>
+      <ul>
+        <li><a href="index.html">Guide</a></li>
+        <li><a href="https://htmx.org/essays">Essays</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Elsewhere</h4>
+      <ul>
+        <li><a href="https://github.com/bigskysoftware">GitHub</a></li>
+        <li><a href="https://htmx.org/discord">Discord</a></li>
+        <li><a href="https://swag.htmx.org">Swag</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="imprint">© Big Sky Software · BSD-0 · Made with attributes, not abstractions.</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@bigskysoftware/moxi-js@0.1.1/moxi.js"></script>
+</body>
+</html>
