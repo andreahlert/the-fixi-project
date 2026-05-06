@@ -5,47 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>rexi — ergonomic fetch · The Fixi Project</title>
 <link rel="stylesheet" href="fixi-style.css">
-<style>
-  :root {
-    --teal:      #b8865c;
-    --teal-deep: #8b6240;
-    --teal-pale: color-mix(in srgb, var(--teal) 22%, white);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --teal:      #d09e75;
-      --teal-deep: #b8865c;
-      --teal-pale: color-mix(in srgb, var(--teal) 28%, black);
-    }
-  }
-</style>
+<script src="chrome.js" defer></script>
 </head>
-<body>
+<body data-theme="rexi">
 
-<div class="banner">
-  <div class="banner-inner">
-    <span class="pill">NEW</span>
-    <span>fixi 1.0 just shipped</span>
-    <a href="fixi.html">read more →</a>
-  </div>
-</div>
-
-<div class="topbar">
-  <a class="brand" href="index.html" style="text-decoration:none;color:inherit;">
-    <span class="logo">🚲</span>
-    <span>The Fixi Project</span>
-  </a>
-  <nav>
-    <a href="index.html">Guide</a>
-    <a href="fixi.html">fixi</a>
-    <a href="moxi.html">moxi</a>
-    <a href="paxi.html">paxi</a>
-    <a href="ssexi.html">ssexi</a>
-    <a class="current" href="rexi.html">rexi</a>
-  </nav>
-  <a class="gh-pill" href="https://github.com/bigskysoftware/rexi">★ on GitHub</a>
-</div>
-
+<div data-chrome="banner"></div>
+<div data-chrome="topbar"></div>
 <section class="hero">
   <div>
     <span class="hero-tagline">🐕 Fetch Wrappers</span>
@@ -164,39 +129,7 @@
   </nav>
 </section>
 
-<footer>
-  <div class="foot-card">
-    <div class="blurb">
-      <strong>🚲 The Fixi Project</strong>
-      Five tiny hypermedia libraries that fit in your head and your bundle. Hand-rolled by Big Sky Software.
-    </div>
-    <div>
-      <h4>Libraries</h4>
-      <ul>
-        <li><a href="fixi.html">fixi</a></li>
-        <li><a href="moxi.html">moxi</a></li>
-        <li><a href="paxi.html">paxi</a></li>
-        <li><a href="ssexi.html">ssexi</a></li>
-        <li><a href="rexi.html">rexi</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Reading</h4>
-      <ul>
-        <li><a href="index.html">Guide</a></li>
-        <li><a href="https://htmx.org/essays">Essays</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Elsewhere</h4>
-      <ul>
-        <li><a href="https://github.com/bigskysoftware">GitHub</a></li>
-        <li><a href="https://htmx.org/discord">Discord</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="imprint">© Big Sky Software · BSD-0 · Made with attributes, not abstractions.</div>
-</footer>
+<div data-chrome="footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@bigskysoftware/moxi-js@0.1.1/moxi.js"></script>
 </body>

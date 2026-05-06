@@ -19,6 +19,14 @@
   --radius-sm:     14px;
   --card-border:   3px solid var(--ink-deep);
 }
+/* per-page theme palettes (override --teal/--teal-deep; --teal-pale derives) */
+body[data-theme="home"]  { --teal:#b34a3a; --teal-deep:#7a2e22; }
+body[data-theme="fixi"]  { --teal:#67a6ad; --teal-deep:#3d7b83; }
+body[data-theme="moxi"]  { --teal:#c8313e; --teal-deep:#9b1f29; }
+body[data-theme="paxi"]  { --teal:#2fa84a; --teal-deep:#1f7a35; }
+body[data-theme="ssexi"] { --teal:#4a90b8; --teal-deep:#2f6c91; }
+body[data-theme="rexi"]  { --teal:#b8865c; --teal-deep:#8b6240; }
+
 @media (prefers-color-scheme: dark) {
   :root {
     --paper: #161819;
@@ -32,6 +40,12 @@
     --shadow:   0 6px 0 rgba(0,0,0,0.4), 0 12px 24px rgba(0,0,0,0.3);
     --shadow-lg:0 10px 0 rgba(0,0,0,0.45), 0 20px 40px rgba(0,0,0,0.35);
   }
+  body[data-theme="home"]  { --teal:#d06352; --teal-deep:#f0a092; }
+  body[data-theme="fixi"]  { --teal:#7eb9c0; --teal-deep:#a4cfd5; }
+  body[data-theme="moxi"]  { --teal:#e15662; --teal-deep:#f48a93; }
+  body[data-theme="paxi"]  { --teal:#4ec268; --teal-deep:#86dba0; }
+  body[data-theme="ssexi"] { --teal:#6aa8cd; --teal-deep:#a3c7df; }
+  body[data-theme="rexi"]  { --teal:#d09e75; --teal-deep:#e6c19e; }
 }
 * { box-sizing: border-box; }
 html { color-scheme: light dark; }
@@ -133,6 +147,8 @@ body::after {
   font-weight: 800;
   font-size: 1.1em;
   letter-spacing: -0.01em;
+  color: inherit;
+  text-decoration: none;
 }
 .brand .logo {
   font-size: 1.9em;

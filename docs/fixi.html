@@ -5,32 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>fixi — supercharged HTML · The Fixi Project</title>
 <link rel="stylesheet" href="fixi-style.css">
+<script src="chrome.js" defer></script>
 </head>
-<body>
+<body data-theme="fixi">
 
-<div class="banner">
-  <div class="banner-inner">
-    <span class="pill">NEW</span>
-    <span>fixi 1.0 just shipped</span>
-    <a href="/fixi.html">read more →</a>
-  </div>
-</div>
-
-<div class="topbar">
-  <a class="brand" href="index.html" style="text-decoration:none;color:inherit;">
-    <span class="logo">🚲</span>
-    <span>The Fixi Project</span>
-  </a>
-  <nav>
-    <a href="index.html">Guide</a>
-    <a class="current" href="fixi.html">fixi</a>
-    <a href="moxi.html">moxi</a>
-    <a href="paxi.html">paxi</a>
-    <a href="ssexi.html">ssexi</a>
-    <a href="rexi.html">rexi</a>
-  </nav>
-  <a class="gh-pill" href="https://github.com/bigskysoftware/fixi">★ on GitHub</a>
-</div>
+<div data-chrome="banner"></div>
+<div data-chrome="topbar"></div>
 
 <section class="hero">
   <div>
@@ -156,39 +136,7 @@
   </nav>
 </section>
 
-<footer>
-  <div class="foot-card">
-    <div class="blurb">
-      <strong>🚲 The Fixi Project</strong>
-      Five tiny hypermedia libraries that fit in your head and your bundle. Hand-rolled by Big Sky Software.
-    </div>
-    <div>
-      <h4>Libraries</h4>
-      <ul>
-        <li><a href="fixi.html">fixi</a></li>
-        <li><a href="moxi.html">moxi</a></li>
-        <li><a href="paxi.html">paxi</a></li>
-        <li><a href="ssexi.html">ssexi</a></li>
-        <li><a href="rexi.html">rexi</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Reading</h4>
-      <ul>
-        <li><a href="index.html">Guide</a></li>
-        <li><a href="https://htmx.org/essays">Essays</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Elsewhere</h4>
-      <ul>
-        <li><a href="https://github.com/bigskysoftware">GitHub</a></li>
-        <li><a href="https://htmx.org/discord">Discord</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="imprint">© Big Sky Software · BSD-0 · Made with attributes, not abstractions.</div>
-</footer>
+<div data-chrome="footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@bigskysoftware/moxi-js@0.1.1/moxi.js"></script>
 </body>
